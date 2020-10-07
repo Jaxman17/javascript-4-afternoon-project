@@ -17,7 +17,13 @@
   getUsername --> which is a function that returns the current object's username property. *Don't use 'user' instead use the 'this' keyword*
 */
 
-//Code Here
+var user = {
+  username: '',
+  email: '',
+  getUsername: function () {
+    return this.username
+  }
+}
 
 ////////// PROBLEM 2 //////////
 
@@ -25,19 +31,20 @@
  Below we have the constructor Animal.  The eat method is using the "this" keyword.  Use the "new" keyword to assign context to "this", and save the instance to a variable named animal1.  You can pass anything you want in for name, species and food.
 */
 
-function Animal(name, species, food) {
-  this.name = name
-  this.species = species
-  this.food = food
+class Animal {
+  constructor(name, species, food) {
+    this.name = name
+    this.species = species
+    this.food = food
+  }
 
-  this.eat = function() {
-    return (
-      this.name + ' is a ' + this.species + ' and likes to eat ' + this.food
-    )
+  eat() {
+    return this.name + ' is a ' + this.species + ' and likes to eat ' + this.food;
   }
 }
 
 //Code Here
+var animal1 = new Animal('Dawg', 'dog', 'hot dogs')
 
 ////////// PROBLEM 3 //////////
 
@@ -55,7 +62,7 @@ let who = {
   location: 'Belize',
 }
 
-//Code Here
+var whoSaysHi = sayHi.bind(who)
 
 ////////// PROBLEM 4 //////////
 
@@ -68,7 +75,7 @@ function whatIsThis() {
 }
 
 // uncomment the line below and tell us what the context of "this" is for whatIsThis()
-//let context1 = ???
+let context1 = this
 
 let product = {
   name: 'snake plant',
@@ -80,7 +87,7 @@ let product = {
 let func = whatIsThis.bind(product)
 
 // uncomment the line below and tell us what the context of "this" is when we invoke func
-//let context2 = ???
+let context2 = product
 
 let vacation = {
   location: 'Hawaii',
@@ -91,14 +98,14 @@ let vacation = {
 }
 
 // uncomment the line below and tell us what the context of "this" is when we invoke vacation.whatIsThis
-//let context3 = ???
+let context3 = vacation
 
 function Family(numParents, numKids, numPets) {
   this.numParents = numParents
   this.numKids = numKids
   this.numPets = numPets
 
-  this.whatIsThis = function() {
+  this.whatIsThis = function () {
     return this
   }
 }
@@ -106,4 +113,4 @@ function Family(numParents, numKids, numPets) {
 let family1 = new Family(2, 4, 1)
 
 // uncomment the line below and tell us what the context of "this" is for the instance of Family created above.
-// let context4 = ???
+let context4 = family1
